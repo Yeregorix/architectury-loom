@@ -23,7 +23,7 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 	}
 }
 
-group = "dev.architectury"
+group = "net.smoofyuniverse"
 archivesBaseName = project.name
 def baseVersion = '1.1'
 
@@ -207,7 +207,7 @@ codenarc {
 gradlePlugin {
 	plugins {
 		fabricLoom {
-			id = 'dev.architectury.loom'
+			id = 'net.smoofyuniverse.loom'
 			implementationClass = 'net.fabricmc.loom.bootstrap.LoomGradlePluginBootstrap'
 		}
 	}
@@ -265,8 +265,8 @@ publishing {
 
 		// Manually crate the plugin marker for snapshot versions
 		snapshotPlugin(MavenPublication) {
-			groupId 'dev.architectury.loom'
-			artifactId 'dev.architectury.loom.gradle.plugin'
+			groupId 'net.smoofyuniverse.loom'
+			artifactId 'net.smoofyuniverse.loom.gradle.plugin'
 			version baseVersion + '-SNAPSHOT'
 
 			pom.withXml {
@@ -286,13 +286,12 @@ publishing {
 	}
 
 	repositories {
-		if (ENV.MAVEN_PASS != null) {
-			maven {
-				url = "https://deploy.shedaniel.me/"
-				credentials {
-					username = "shedaniel"
-					password = ENV.MAVEN_PASS
-				}
+		maven {
+			url = "https://oss.sonatype.org/content/repositories/snapshots/"
+
+			credentials {
+				username findProperty('ossrhUsername')
+				password findProperty('ossrhPassword')
 			}
 		}
 	}
