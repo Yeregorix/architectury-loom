@@ -42,6 +42,7 @@ logger.lifecycle(":building plugin v${version}")
 
 repositories {
 	mavenCentral()
+	maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 	maven { url "https://maven.fabricmc.net/" }
 	maven { url "https://maven.architectury.dev/" }
 	maven {
@@ -92,7 +93,7 @@ dependencies {
 	}
 
 	// tinyfile management
-	implementation ('dev.architectury:tiny-remapper:1.8.20')
+	implementation ('net.smoofyuniverse:tiny-remapper:1.9-SNAPSHOT')
 	implementation 'net.fabricmc:access-widener:2.1.0'
 	implementation 'net.fabricmc:mapping-io:0.2.1'
 
